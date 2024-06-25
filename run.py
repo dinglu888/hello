@@ -1,8 +1,12 @@
-# 创建应用实例
-import sys
+import os
 
-from wxcloudrun import app
+from flask import Flask
 
-# 启动Flask Web服务
-if __name__ == '__main__':
-    app.run(host=sys.argv[1], port=sys.argv[2])
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return '欢迎使用微信云托管！'
+
+if __name__ == "__main__":
+    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 80)))
