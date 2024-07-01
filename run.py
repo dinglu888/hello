@@ -19,7 +19,7 @@ def getData():
 def add():
     a1 = request.json['a'];
     b1 = request.json['b'];
-    return a1+b1;
+    return int(a1)+int(b1);
 
 @app.route('/search', methods=['POST'])
 def search():
