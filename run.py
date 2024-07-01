@@ -4,8 +4,8 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
+@app.route('/hello')
+def hello():
     return '欢迎使用微信云托管========！'
 
 @app.route('/add', methods=['POST', 'GET'])
