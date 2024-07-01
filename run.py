@@ -17,6 +17,10 @@ def getData():
 def add(a, b):
     return a+b;
 
+@app.route('/search', methods=['POST'])
+def search():
+    keyword = request.json['keyword']
+    return jsonify(keyword);
 
 
 if __name__ == "__main__":
