@@ -14,8 +14,12 @@ def getData():
     return data;
 
 @app.route('/add', methods=['POST'])
-def add(a, b):
-    return a+b;
+#def add(a, b):
+#    return a+b;
+def add():
+    a1 = request.json['a'];
+    b1 = request.json['b'];
+    return a1+b1;
 
 @app.route('/search', methods=['POST'])
 def search():
