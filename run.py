@@ -19,13 +19,7 @@ def getData():
 def add():
     a1 = request.json['a'];
     b1 = request.json['b'];
-    if a1.isdigit():
-        print("a是数字")
-    else:
-        print("a不是数字")
-    a2 = int(a1);
-    b2 = int(b1);
-    sum = a2+b2;
+    sum = a1+b1;
     return sum;
 
 @app.route('/search', methods=['POST'])
