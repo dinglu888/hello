@@ -41,7 +41,7 @@ def cb_sayhello():						# 无参数的回调函数
     res = func_say_hello4(1,2);
     print("============================")
     
-    return res;
+    return jsonify(res);
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 80)))
