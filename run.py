@@ -30,35 +30,32 @@ def search():
     return jsonify(keyword);
 
 ##########################################################
-def cb_sayhello():						# 无参数的回调函数
-    print("python hello")
 
+@app.route('/cb_sayhello2')
 def cb_sayhello2(res):					# 带参数有返回值的回调函数。
     print("python hello2,res:",res)
     return 1024
 
-def cb_sayhello3(res):					# 带参数有返回值的回调函数。
-    print("python hello3,res:",res)
-    return 1024
-
-solib =  ctypes.CDLL('./libhello.so')   # 加载动态链接库
-
-func_send_message = solib.send_message
-# CFUNCTYPE定义方法的签名，第一参数表示方法的返回类型，后面开始编译参数的类型
-funcStruct =  CFUNCTYPE(None)			
-solib.send_message(10,funcStruct(cb_sayhello))
-print("============================")
-
-send_message2 = solib.send_message2
-# CFUNCTYPE定义方法的签名，第一参数表示方法的返回值，后面开始编译参数的类型
-funcStruct2 =  CFUNCTYPE(c_int,c_int)
-send_message2(10,funcStruct2(cb_sayhello2))
-print("============================")
-
-send_message3 = solib.send_message3
-funcStruct3 =  CFUNCTYPE(c_void_p,c_short)
-send_message3(10,funcStruct3(cb_sayhello3))
-print("============================")
+@app.route('/so')
+def so():
+    solib =  ctypes.CDLL('./libhello.so')   # 加载动态链接库
+    
+    func_send_message = solib.send_message
+    # CFUNCTYPE定义方法的签名，第一参数表示方法的返回类型，后面开始编译参数的类型
+    funcStruct =  CFUNCTYPE(None)			
+    solib.send_message(10,funcStruct(cb_sayhello))
+    print("============================")
+    
+    send_message2 = solib.send_message2
+    # CFUNCTYPE定义方法的签名，第一参数表示方法的返回值，后面开始编译参数的类型
+    funcStruct2 =  CFUNCTYPE(c_int,c_int)
+    send_message2(10,funcStruct2(cb_sayhello2))
+    print("============================")
+    
+    send_message3 = solib.send_message3
+    funcStruct3 =  CFUNCTYPE(c_void_p,c_short)
+    send_message3(10,funcStruct3(cb_sayhello3))
+    print("============================")
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 80)))
