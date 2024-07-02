@@ -32,9 +32,8 @@ def search():
 ##########################################################
 
 @app.route('/cb_sayhello2')
-def cb_sayhello2(res):					# 带参数有返回值的回调函数。
-    print("python hello2,res:",res)
-    return 1024
+def cb_sayhello2():
+    return 1024;
 
 @app.route('/so')
 def so():
@@ -56,6 +55,7 @@ def so():
     funcStruct3 =  CFUNCTYPE(c_void_p,c_short)
     send_message3(10,funcStruct3(cb_sayhello3))
     print("============================")
+    return "hello world";
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 80)))
