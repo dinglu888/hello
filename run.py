@@ -17,8 +17,8 @@ def getData():
 #def add(a, b):
 #    return a+b;
 def add():
-    a1 = request.json['a'];
-    b1 = request.json['b'];
+    a1 = int(request.json['a']);
+    b1 = int(request.json['b']);
     sum = a1+b1;
     return sum;
 
