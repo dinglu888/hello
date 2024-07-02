@@ -31,7 +31,7 @@ def search():
 
 ##########################################################
 
-@app.route('/cb_sayhello2')
+@app.route('/cb_sayhello2', methods=['GET'])
 def cb_sayhello2():
     return 1024;
 
