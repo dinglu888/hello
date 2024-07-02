@@ -31,12 +31,10 @@ def search():
 
 ##########################################################
 
-@app.route('/cb_sayhello2', methods=['GET'])
-def cb_sayhello2():
-    return "sayhello2";
 
-@app.route('/so')
-def so():
+@app.route('/cb_sayhello')
+def cb_sayhello():						# 无参数的回调函数
+  
     solib =  ctypes.CDLL('./libhello.so')   # 加载动态链接库
     
     func_send_message = solib.send_message
@@ -45,16 +43,6 @@ def so():
     solib.send_message(10,funcStruct(cb_sayhello))
     print("============================")
     
-    send_message2 = solib.send_message2
-    # CFUNCTYPE定义方法的签名，第一参数表示方法的返回值，后面开始编译参数的类型
-    funcStruct2 =  CFUNCTYPE(c_int,c_int)
-    send_message2(10,funcStruct2(cb_sayhello2))
-    print("============================")
-    
-    send_message3 = solib.send_message3
-    funcStruct3 =  CFUNCTYPE(c_void_p,c_short)
-    send_message3(10,funcStruct3(cb_sayhello3))
-    print("============================")
     return "hello world";
 
 if __name__ == "__main__":
