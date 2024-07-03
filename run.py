@@ -46,7 +46,7 @@ def camera_calibration():
     ls_area_min = 1
     rect_instance = (0, 0, 1080, 985)  
 
-    func_camera_calibration = solib.camera_calibration
+    func_camera_calibration = lib.camera_calibration
     success = func_camera_calibration(
         image_path.encode('utf-8'),
         cv_rect_to_c_int_ptr(rect_instance),
