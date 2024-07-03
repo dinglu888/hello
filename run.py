@@ -50,11 +50,7 @@ def cb_sayhello():
    
 @app.route('/camera_calibration')
 def camera_calibration():
-    try:
-        lib = ctypes.CDLL('./libgalvanometer_correction.so')
-        print("Library loaded successfully")
-    except OSError as e:
-        print(f"Failed to load library: {e}")
+    lib = ctypes.CDLL('./libgalvanometer_correction.so')
         
     image_path = './camera_calibration.jpg'
     is_circle = True
