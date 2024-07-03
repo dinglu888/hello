@@ -29,7 +29,7 @@ def cb_sayhello():
 @app.route('/camera_calibration')
 def camera_calibration():
     lib = ctypes.CDLL('./libgalvanometer_correction.so')
-    func_camera_calibration = lib.camera_calibration
+    func_camera_calibration = lib.camera_calibration    
         
     image_path = './camera_calibration.jpg'
     is_circle = True
@@ -46,6 +46,7 @@ def camera_calibration():
     rect_instance = (0, 0, 1080, 985) 
     rect_array = (ctypes.c_int * 4)(*rect_instance)
     
+    return '111111'
 
     success = func_camera_calibration(
         image_path.encode('utf-8'),
