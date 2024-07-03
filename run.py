@@ -28,10 +28,11 @@ def cb_sayhello():
    
 @app.route('/camera_calibration')
 def camera_calibration():
-    lib = ctypes.CDLL('./libgalvanometer_correction.so')  
-       
-    
-    return '33333'
+    try:
+        lib = ctypes.CDLL('./libgalvanometer_correction.so')
+        return 'Library loaded successfully'
+    except OSError as e:
+        return 'Failed to load library: {e}'
 
 
 
