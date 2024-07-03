@@ -44,7 +44,7 @@ def camera_calibration():
     ls_kernel_cross = 7
     ls_area_max = 500000
     ls_area_min = 1
-    rect_instance = (0, 0, 1280, 1280)
+    rect_instance = (0, 0, 1080, 985)
 
     func_camera_calibration = solib.camera_calibration
     success = func_camera_calibration(
