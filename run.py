@@ -29,6 +29,7 @@ def cb_sayhello():
 @app.route('/camera_calibration')
 def camera_calibration():
     lib = ctypes.CDLL('./libgalvanometer_correction.so')
+    func_camera_calibration = lib.camera_calibration
         
     image_path = './camera_calibration.jpg'
     is_circle = True
@@ -46,7 +47,7 @@ def camera_calibration():
     rect_array = (ctypes.c_int * 4)(*rect_instance)
     
 
-    success = lib.camera_calibration(
+    success = func_camera_calibration(
         image_path.encode('utf-8'),
         ctypes.cast(rect_array, ctypes.POINTER(ctypes.c_int)),
         ctypes.c_bool(is_circle),
@@ -60,6 +61,11 @@ def camera_calibration():
         ctypes.c_int(ls_area_max),
         ctypes.c_int(ls_area_min)
     )
+    
+    if success:
+        return 'Camera calibration successful'
+    else:
+        return 'Camera calibration failed'
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 80)))
