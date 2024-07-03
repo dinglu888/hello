@@ -43,8 +43,8 @@ def camera_calibration():
     ls_area_max = 500000
     ls_area_min = 1
        
-    rect_instance = (0, 0, 1080, 985) 
-    rect_array = (ctypes.c_int * 4)(*rect_instance)
+    #rect_instance = (0, 0, 1080, 985) 
+    #rect_array = (ctypes.c_int * 4)(*rect_instance)
     
     return '33333'
 
