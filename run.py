@@ -41,9 +41,25 @@ def camera_calibration():
     ls_kernel_cross = 7
     ls_area_max = 500000
     ls_area_min = 1
-    rect_instance = (0, 0, 1080, 985)  
-
     
+    rect_instance = (0, 0, 1080, 985) 
+    rect_array = (ctypes.c_int * 4)(*rect_instance)
+    
+
+    success = lib.camera_calibration(
+        image_path.encode('utf-8'),
+        ctypes.cast(rect_array, ctypes.POINTER(ctypes.c_int)),
+        ctypes.c_bool(is_circle),
+        ctypes.c_int(index),
+        ctypes.c_double(area),
+        ctypes.c_double(ls_circle),
+        ctypes.c_double(ls_convex),
+        ctypes.c_double(ls_ineria),
+        ctypes.c_int(ls_kernel),
+        ctypes.c_int(ls_kernel_cross),
+        ctypes.c_int(ls_area_max),
+        ctypes.c_int(ls_area_min)
+    )
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 80)))
