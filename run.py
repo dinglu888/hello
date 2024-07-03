@@ -6,6 +6,29 @@ from ctypes import *
 
 app = Flask(__name__)
 
+def loc_get_size(index):
+    s_mark = [
+        3, 5, 7, 9, 11, 27, 33, 37, 63
+    ]
+    return s_mark[index] * s_mark[index]
+
+def cv_rect_to_c_int_ptr(rect):
+    # 将 Python 元组 (x, y, width, height) 转换为 ctypes 指针
+    rect_array = (ctypes.c_int * 4)(*rect)
+    return ctypes.cast(rect_array, ctypes.POINTER(ctypes.c_int))
+
+def output_txt(file, data):
+    try:
+        with open(file, 'w') as f:
+            f.write("{:<10} {:<15} {:<15}\n".format("Pos", "X", "Y"))
+            for k in range(0, len(data), 2):
+                x = data[k] if k < len(data) else 0
+                y = data[k+1] if (k+1) < len(data) else 0
+                f.write("{:<10} {:<15} {:<15}\n".format((k//2)+1, x, y))
+        return True
+    except IOError:
+        return False
+
 @app.route('/')
 def hello():
     return '欢迎使用微信云托管========！';
