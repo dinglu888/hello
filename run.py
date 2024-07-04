@@ -32,9 +32,7 @@ def camera_calibration():
         lib = ctypes.CDLL('./libgalvanometer_correction.so')
         return 'Library loaded successfully'
     except OSError as e:
-        return 'Failed to load library'
-        
-        
+        return 'Failed to load library';   
 
 
 if __name__ == "__main__":
