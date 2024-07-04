@@ -26,7 +26,7 @@ def cb_sayhello():
 
 ##########################################################
    
-@app.route('/camera_calibration')
+@app.route('/camera_calibration', methods=['POST'])
 def camera_calibration():
     index = request.json['index'];
     ls_circle = request.json['ls_circle'];
