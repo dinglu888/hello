@@ -31,8 +31,8 @@ def camera_calibration():
     index = request.json['index'];
     ls_circle = request.json['ls_circle'];
     ls_area_max = request.json['ls_area_max'];
-    name = request.json['name'];
-    return index + "," + ls_circle + "," + ls_area_max + "," + name;
+ 
+    return index + "," + ls_circle + "," + ls_area_max;
 
 
 if __name__ == "__main__":
