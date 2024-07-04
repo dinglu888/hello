@@ -32,7 +32,6 @@ RUN apk add --no-cache \
 RUN apk add --no-cache opencv-dev
 
 
-
 # 拷贝项目文件到容器的 /app 目录
 COPY . /app
 
