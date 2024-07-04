@@ -28,11 +28,11 @@ def cb_sayhello():
    
 @app.route('/camera_calibration', methods=['POST'])
 def camera_calibration():
-    index = request.json['index'];
-    ls_circle = request.json['ls_circle'];
-    ls_area_max = request.json['ls_area_max'];
- 
-    return index + "," + ls_circle + "," + ls_area_max;
+    try:
+        lib = ctypes.CDLL('./libgalvanometer_correction.so')
+        return 'Library loaded successfully'
+    except OSError as e:
+        return 'Failed to load library'
 
 
 if __name__ == "__main__":
