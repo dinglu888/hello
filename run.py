@@ -28,7 +28,6 @@ def cb_sayhello():
    
 @app.route('/camera_calibration', methods=['POST'])
 def camera_calibration():
-
     try:
         lib = ctypes.CDLL('./libgalvanometer_correction.so')
         return 'Library loaded successfully'
