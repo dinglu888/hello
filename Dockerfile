@@ -31,8 +31,7 @@ RUN apk add --no-cache \
 # 安装 OpenCV，这里使用预编译的包
 RUN apk add --no-cache opencv-dev
 
-# 更新 pip 并安装 Python 依赖包
-RUN python3 -m pip install --upgrade pip
+
 
 # 拷贝项目文件到容器的 /app 目录
 COPY . /app
