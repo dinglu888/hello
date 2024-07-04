@@ -33,6 +33,8 @@ def camera_calibration():
         return 'Library loaded successfully'
     except OSError as e:
         return 'Failed to load library'
+        
+        
 
 
 if __name__ == "__main__":
