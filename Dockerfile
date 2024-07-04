@@ -1,6 +1,3 @@
-# 二开推荐阅读[如何提高项目构建效率](https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/scene/build/speed.html)
-# 选择基础镜像。如需更换，请到[dockerhub官方仓库](https://hub.docker.com/_/python?tab=tags)自行选择后替换。
-# 已知alpine镜像与pytorch有兼容性问题会导致构建失败，如需使用pytorch请务必按需更换基础镜像。
 FROM alpine:3.13
 
 # 容器默认时区为UTC，如需使用上海时间请启用以下时区设置命令
@@ -14,8 +11,20 @@ RUN apk add ca-certificates
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories \
 # 安装python3
 && apk add --update --no-cache python3 py3-pip \
-&& rm -rf /var/cache/apk/*
-
+# 安装 C++ 运行环境
+&& apk add --update --no-cache g++ \
+# 安装 OpenCV 相关依赖
+&& apk add --update --no-cache \
+    ffmpeg-dev \
+    openblas-dev \
+    lapack-dev \
+    cmake \
+    git \
+    pkgconfig \
+    python3-dev \
+    py3-numpy-dev \
+    py3-scipy \
+    py3-pillow \
 # 拷贝当前项目到/app目录下（.dockerignore中文件除外）
 COPY . /app
 
@@ -27,7 +36,6 @@ WORKDIR /app
 RUN pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple \
 && pip config set global.trusted-host mirrors.cloud.tencent.com \
 && pip install --upgrade pip \
-# pip install scipy 等数学包失败，可使用 apk add py3-scipy 进行， 参考安装 https://pkgs.alpinelinux.org/packages?name=py3-scipy&branch=v3.13
 && pip install --user -r requirements.txt
 
 # 暴露端口。
@@ -35,6 +43,4 @@ RUN pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple
 EXPOSE 80
 
 # 执行启动命令
-# 写多行独立的CMD命令是错误写法！只有最后一行CMD命令会被执行，之前的都会被忽略，导致业务报错。
-# 请参考[Docker官方文档之CMD命令](https://docs.docker.com/engine/reference/builder/#cmd)
 CMD ["python3", "run.py", "0.0.0.0", "80"]
