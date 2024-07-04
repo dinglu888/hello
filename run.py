@@ -28,12 +28,11 @@ def cb_sayhello():
    
 @app.route('/camera_calibration')
 def camera_calibration():
-    is_circle = request.json['is_circle'];
     index = request.json['index'];
     ls_circle = request.json['ls_circle'];
     ls_area_max = request.json['ls_area_max'];
     name = request.json['name'];
-    return jsonify(is_circle) + "," + jsonify(index) + "," + jsonify(ls_circle) + "," + jsonify(ls_area_max) + "," + jsonify(name);
+    return index + "," + ls_circle + "," + ls_area_max + "," + name;
 
 
 if __name__ == "__main__":
