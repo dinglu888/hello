@@ -28,10 +28,12 @@ def cb_sayhello():
    
 @app.route('/camera_calibration', methods=['POST'])
 def camera_calibration():
+    index = request.json['index'];
     area = request.json['area'];
     ls_circle = request.json['ls_circle'];
+    name = request.json['name'];
     
-    str = "%s-%s" %(area, ls_circle)
+    str = "%s,%s,%s,%s" %(index, area, ls_circle, name)
     
     return str;
 
