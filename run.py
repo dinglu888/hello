@@ -54,7 +54,7 @@ def camera_calibration():
         lib = ctypes.CDLL('./libgalvanometer_correction.so')
         return 'Library loaded successfully'
     except OSError as e:
-        return 'Failed to load library'
+        return f'Failed to load library{e}'
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 80)))
