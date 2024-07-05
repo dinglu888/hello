@@ -33,9 +33,13 @@ def camera_calibration():
     ls_circle = request.json['ls_circle'];
     name = request.json['name'];
     
-    str = "%s,%s,%s,%s" %(index, area, ls_circle, name)
+    solib =  ctypes.CDLL('./libhello.so')   # 加载动态链接库  
+    func_say_hello4 = solib.say_hello4
+    res = func_say_hello4(index,area);  
+    return jsonify(res);
     
-    return str;
+    #str = "%s,%s,%s,%s" %(index, area, ls_circle, name)
+    #return str;
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 80)))
