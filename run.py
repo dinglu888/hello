@@ -28,13 +28,13 @@ def cb_sayhello():
    
 @app.route('/camera_calibration', methods=['POST'])
 def camera_calibration():
-    #index = request.json["index"];
-    #area = request.json["area"];
+    index = request.json["index"];
+    area = request.json["area"];
     #ls_circle = request.json['ls_circle'];
     #name = request.json['name'];
     
-    index = int(json.loads(request.values.get("index")))
-    area = int(json.loads(request.values.get("area")))
+    #index = int(json.loads(request.values.get("index")))
+    #area = int(json.loads(request.values.get("area")))
     
     #json_str = '{"name": "John", "age": 30, "age1": 20, "city": "New York"}'
     #将JSON字符串解析为Python对象
@@ -48,8 +48,8 @@ def camera_calibration():
     #return jsonify(res);
     
     str = "%s,%s,%s" %(index, area, res)
-    #return json.dumps(str.decode('utf8'));
-    return str;
+    return json.dumps(str.decode('utf8'));
+    #return str;
     
 
 if __name__ == "__main__":
