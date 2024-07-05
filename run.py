@@ -29,9 +29,10 @@ def cb_sayhello():
 @app.route('/camera_calibration', methods=['POST'])
 def camera_calibration():
     index = request.json["index"];
-    area = request.json["area"];
+    #area = request.json["area"];
     #ls_circle = request.json['ls_circle'];
     #name = request.json['name'];
+    area = request.form.get('area')
     name = request.form.get("name")
     
     #index = int(json.loads(request.values.get("index")))
@@ -48,7 +49,7 @@ def camera_calibration():
     res = func_say_hello4(index,area);  
     #return jsonify(res);
     
-    str = "%s,%s,%s" %(index, area, res)
+    str = "%s,%s,%s,%s" %(index, area, name, res)
     #return json.dumps(str.decode('utf8'));
     return str;
     
