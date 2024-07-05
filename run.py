@@ -33,6 +33,9 @@ def camera_calibration():
     ls_circle = request.json['ls_circle'];
     name = request.json['name'];
     
+    a = (int)index;
+    b = (int)area;
+    
     #json_str = '{"name": "John", "age": 30, "age1": 20, "city": "New York"}'
     #将JSON字符串解析为Python对象
     #data = json.loads(json_str)
@@ -41,10 +44,10 @@ def camera_calibration():
     
     solib =  ctypes.CDLL('./libhello.so')   # 加载动态链接库  
     func_say_hello4 = solib.say_hello4
-    res = func_say_hello4(index,area);  
+    res = func_say_hello4(a,b);  
     #return jsonify(res);
     
-    str = "%s,%s,%s,%s,%s" %(index, area, ls_circle, name, res)
+    str = "%s,%s,%s,%s,%s" %(a, b, ls_circle, name, res)
     return str;
 
 if __name__ == "__main__":
