@@ -1,7 +1,7 @@
 import os
 import ctypes
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, json
 from ctypes import *
 
 app = Flask(__name__)
@@ -34,6 +34,7 @@ def camera_calibration():
     name = request.json['name'];
     
     json_str = '{"name": "John", "age": 30, "age1": 20, "city": "New York"}'
+    #将JSON字符串解析为Python对象
     data = json.loads(json_str)
     age = data["age"]
     age1 = data["age1"]
