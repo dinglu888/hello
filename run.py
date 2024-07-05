@@ -47,7 +47,7 @@ def camera_calibration():
     res = func_say_hello4(a,b);  
     #return jsonify(res);
     
-    str = "%s,%s,%s,%s,%s" %(a, b, ls_circle, name, res)
+    str = "%s,%s,%s,%s,%s" %(index, area, a, b, res)
     return str;
 
 if __name__ == "__main__":
