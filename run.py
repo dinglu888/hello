@@ -47,9 +47,9 @@ def camera_calibration():
     res = func_say_hello4(index,area);  
     #return jsonify(res);
     
-    #str = "%s,%s,%s" %(index, area, res)
-    str = '加载动态链接库'
-    return json.dumps(str.decode('utf8'));
+    str = "%s,%s,%s" %(index, area, res)
+    #return json.dumps(str.decode('utf8'));
+    return str;
     
 
 if __name__ == "__main__":
