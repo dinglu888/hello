@@ -33,9 +33,14 @@ def camera_calibration():
     ls_circle = request.json['ls_circle'];
     name = request.json['name'];
     
+    json_str = '{"name": "John", "age": 30, "age1": 20, "city": "New York"}'
+    data = json.loads(json_str)
+    age = data["age"]
+    age1 = data["age1"]
+    
     solib =  ctypes.CDLL('./libhello.so')   # 加载动态链接库  
     func_say_hello4 = solib.say_hello4
-    res = func_say_hello4(index,area);  
+    res = func_say_hello4(age,age1);  
     return jsonify(res);
     
     #str = "%s,%s,%s,%s" %(index, area, ls_circle, name)
