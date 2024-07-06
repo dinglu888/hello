@@ -1,5 +1,10 @@
 import os
 import ctypes
+import sys
+defaultencoding = 'utf-8'
+if sys.getdefaultencoding() != defaultencoding:
+    reload(sys)
+    sys.setdefaultencoding(defaultencoding)
 
 from flask import Flask, request, jsonify, json
 from ctypes import *
