@@ -53,7 +53,7 @@ def camera_calibration():
     res = func_say_hello4(index,area);  
     #return jsonify(res);
     
-    str = "%s,%s,%s,%s" %(index, area, res)
+    str = "%s,%s,%s" %(index, area, res)
     #return json.dumps(str.decode('utf8'));
     return str;
     
