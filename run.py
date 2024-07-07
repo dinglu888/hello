@@ -38,11 +38,12 @@ def camera_calibration():
     #ls_circle = request.json['ls_circle'];
     #name = request.json['name'];
     
-    #area = request.form.get('area');  
+    #area = request.form.get('area'); 
+    #报500错误
     #index = int(json.loads(request.values.get("index")))
     #area = int(json.loads(request.values.get("area")))
 
-    data = request.get_json()
+    data = request.json;
     index = data['index']
     area = data['area']
     
