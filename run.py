@@ -44,8 +44,8 @@ def camera_calibration():
     #area = int(json.loads(request.values.get("area")))
 
     data = request.json;
-    index = data['index']
-    area = data['area']
+    index = int(data['index'])
+    area = int(data['area'])
     
     #json_str = '{"name": "John", "age": 30, "age1": 20, "city": "New York"}'
     #将JSON字符串解析为Python对象
@@ -59,6 +59,7 @@ def camera_calibration():
     #return jsonify(res);
     
     str = "%s,%s,%s" %(index, area, res)
+    #报500错误
     #return json.dumps(str.decode('utf8'));
     return str;
     
