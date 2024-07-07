@@ -39,8 +39,12 @@ def camera_calibration():
     #name = request.json['name'];
     
     #area = request.form.get('area');  
-    index = int(json.loads(request.values.get("index")))
-    area = int(json.loads(request.values.get("area")))
+    #index = int(json.loads(request.values.get("index")))
+    #area = int(json.loads(request.values.get("area")))
+
+    data = request.get_json()
+    index = data['index']
+    area = data['area']
     
     #json_str = '{"name": "John", "age": 30, "age1": 20, "city": "New York"}'
     #将JSON字符串解析为Python对象
