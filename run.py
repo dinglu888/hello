@@ -48,7 +48,7 @@ def camera_calibration():
     index = int(data['index'])
     area = int(data['area'])
     ls_circle = float(data['ls_circle'])
-    name = str(data['name'])
+    name = data['name']
     
     #json_str = '{"name": "John", "age": 30, "age1": 20, "city": "New York"}'
     #将JSON字符串解析为Python对象
