@@ -59,8 +59,8 @@ def camera_calibration():
     #return jsonify(res);
     
     str = "%s,%s,%s" %(index, area, res)
-    return json.dumps(str.decode('utf8'));
-    #return str;
+    #return json.dumps(str.decode('utf8'));
+    return str;
     
 
 if __name__ == "__main__":
