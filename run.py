@@ -48,7 +48,7 @@ def camera_calibration():
     index = int(data['index'])
     area = int(data['area'])
     ls_circle = float(data['ls_circle'])
-    #name = data['name']
+    name = str(data['name'])
     
     #json_str = '{"name": "John", "age": 30, "age1": 20, "city": "New York"}'
     #将JSON字符串解析为Python对象
@@ -61,10 +61,10 @@ def camera_calibration():
     res = func_say_hello4(index,area);  
     #return jsonify(res);
     
-    #str = "%s,%s,%s,%s" %(index, area, res, ls_circle)
+    str = "%s,%s,%s,%s,%s" %(index, area, res, ls_circle, name)
     #报500错误
     #return json.dumps(str.decode('utf8'));
-    return jsonify(ls_circle);
+    return str;
     
 
 if __name__ == "__main__":
