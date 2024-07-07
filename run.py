@@ -44,7 +44,7 @@ def camera_calibration():
     #area = int(json.loads(request.values.get("area")))
 
     data = request.json;
-    is_circle = bool(data['is_circle'])
+    #is_circle = bool(data['is_circle'])
     index = int(data['index'])
     area = int(data['area'])
     ls_circle = float(data['ls_circle'])
@@ -61,7 +61,7 @@ def camera_calibration():
     res = func_say_hello4(index,area);  
     #return jsonify(res);
     
-    str = "%s,%s,%s,%s,%s,%s" %(index, area, res, is_circle, ls_circle, name)
+    str = "%s,%s,%s,%s,%s" %(index, area, res, ls_circle, name)
     #报500错误
     #return json.dumps(str.decode('utf8'));
     return str;
