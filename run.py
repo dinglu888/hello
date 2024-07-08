@@ -61,22 +61,22 @@ def camera_calibration():
     ]
     lib.camera_calibration.restype = ctypes.c_bool
 
-    # 调用 camera_calibration 函数的示例参数
-is_circle = True                             #检测十字架或圆   
-index = 7                                    #标定板和打印点的规格  3, 5, 7, 9, 11, 27, 33, 37, 63
-area = 5                                     #标定板尺寸
-ls_circle = 0.1                              #圆度
-ls_convex = 0.1                              #凸性
-ls_ineria = 0.1                              #惯性
-ls_kernel = 3                                #卷子核
-ls_kernel_cross = 3                          #十子核
-ls_area_max = 500000                         #最大面积
-ls_area_min = 1                              #最小面积
+        # 调用 camera_calibration 函数的示例参数
+    is_circle = True                             #检测十字架或圆   
+    index = 7                                    #标定板和打印点的规格  3, 5, 7, 9, 11, 27, 33, 37, 63
+    area = 5                                     #标定板尺寸
+    ls_circle = 0.1                              #圆度
+    ls_convex = 0.1                              #凸性
+    ls_ineria = 0.1                              #惯性
+    ls_kernel = 3                                #卷子核
+    ls_kernel_cross = 3                          #十子核
+    ls_area_max = 500000                         #最大面积
+    ls_area_min = 1                              #最小面积
 
-# 图像路径
-image_path = './1.jpg'
+    # 图像路径
+    image_path = './1.jpg'
 
-try:
+
     rect_instance = (0, 0, 1080, 985)  # 你需要根据你的需求修改矩形区域
 
     success = lib.camera_calibration(
@@ -93,14 +93,7 @@ try:
         ctypes.c_int(ls_area_max),
         ctypes.c_int(ls_area_min)
     )
-    if success:
-        retrun 'Camera calibration successful'
-    else:
-        retrun 'Camera calibration failed'
-except OSError as e:
-    retrun 'Failed to call camera_calibration'
-except AttributeError as e:
-    retrun 'Failed to find camera_calibration function'
+
      
     
 
