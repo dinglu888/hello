@@ -33,38 +33,11 @@ def cb_sayhello():
    
 @app.route('/camera_calibration', methods=['POST'])
 def camera_calibration():
-    #index = request.json["index"];
-    #area = request.json["area"];
-    #ls_circle = request.json['ls_circle'];
-    #name = request.json['name'];
-    
-    #area = request.form.get('area'); 
-    #报500错误
-    #index = int(json.loads(request.values.get("index")))
-    #area = int(json.loads(request.values.get("area")))
-
-    data = request.json;
-    #is_circle = bool(data['is_circle'])
-    index = int(data['index'])
-    area = int(data['area'])
-    ls_circle = float(data['ls_circle'])
-    name = data['name']
-    
-    #json_str = '{"name": "John", "age": 30, "age1": 20, "city": "New York"}'
-    #将JSON字符串解析为Python对象
-    #data = json.loads(json_str)
-    #age = data["age"]
-    #age1 = data["age1"]
-    
-    solib =  ctypes.CDLL('./libhello.so')   # 加载动态链接库  
-    func_say_hello4 = solib.say_hello4
-    res = func_say_hello4(index,area);  
-    #return jsonify(res);
-    
-    str = "%s,%s,%s,%s,%s" %(index, area, res, ls_circle, name)
-    #报500错误
-    #return json.dumps(str.decode('utf8'));
-    return str;
+    try:
+        lib = ctypes.CDLL('./libgalvanometer_correction.so')
+        return 'Library loaded successfully'
+    except OSError as e:
+        return 'Failed to load library'
     
 
 if __name__ == "__main__":
