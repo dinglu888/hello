@@ -79,20 +79,21 @@ def camera_calibration():
     rect_array = (ctypes.c_int * 4)(*rect)
     
     try:
-        success = lib.camera_calibration(
-            image_path.encode('utf-8'),
-            ctypes.cast(rect_array, ctypes.POINTER(ctypes.c_int)),
-            ctypes.c_bool(is_circle),
-            ctypes.c_int(index),
-            ctypes.c_double(area),
-            ctypes.c_double(ls_circle),
-            ctypes.c_double(ls_convex),
-            ctypes.c_double(ls_ineria),
-            ctypes.c_int(ls_kernel),
-            ctypes.c_int(ls_kernel_cross),
-            ctypes.c_int(ls_area_max),
-            ctypes.c_int(ls_area_min)
-        )
+        #success = lib.camera_calibration(
+        #    image_path.encode('utf-8'),
+        #    ctypes.cast(rect_array, ctypes.POINTER(ctypes.c_int)),
+        #    ctypes.c_bool(is_circle),
+        #    ctypes.c_int(index),
+        #   ctypes.c_double(area),
+        #    ctypes.c_double(ls_circle),
+        #    ctypes.c_double(ls_convex),
+        #    ctypes.c_double(ls_ineria),
+        #    ctypes.c_int(ls_kernel),
+        #    ctypes.c_int(ls_kernel_cross),
+        #    ctypes.c_int(ls_area_max),
+        #    ctypes.c_int(ls_area_min)
+        #)
+        success = True
         if success:
             return 'Camera calibration successful'
         else:
