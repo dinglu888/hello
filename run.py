@@ -43,6 +43,24 @@ def camera_calibration():
         #return 'Library loaded successfully'
     except OSError as e:
         return f'Failed to load library:{e}'
+        
+        
+    # 定义 camera_calibration 和 galvanometer_correction 函数的参数和返回类型
+    lib.camera_calibration.argtypes = [
+        ctypes.c_char_p,  # const char* (as img_path)
+        ctypes.POINTER(ctypes.c_int),  # int* (as rect array)
+        ctypes.c_bool,  # bool (is_circle)
+        ctypes.c_int,  # int (index)
+        ctypes.c_double,  # double (area)
+        ctypes.c_double,  # double (ls_circle)
+        ctypes.c_double,  # double (ls_convex)
+        ctypes.c_double,  # double (ls_ineria)
+        ctypes.c_int,  # int (ls_kernel)
+        ctypes.c_int,  # int (ls_kernel_cross)
+        ctypes.c_int,  # int (ls_area_max)
+        ctypes.c_int   # int (ls_area_min)
+    ]
+    lib.camera_calibration.restype = ctypes.c_bool
      
 
 	image_path = './1.jpg'
@@ -58,12 +76,11 @@ def camera_calibration():
     ls_area_min = 1
     
     rect = (0, 0, 1080, 985)
-    rect_array = (ctypes.c_int * 4)(*rect)
     
     try:
         success = lib.camera_calibration(
             image_path.encode('utf-8'),
-            ctypes.cast(rect_array, ctypes.POINTER(ctypes.c_int),
+            cv_rect_to_c_int_ptr(rect_instance),
             ctypes.c_bool(is_circle),
             ctypes.c_int(index),
             ctypes.c_double(area),
