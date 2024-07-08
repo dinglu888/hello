@@ -11,10 +11,10 @@ from ctypes import *
 
 app = Flask(__name__)
 
-def cv_rect_to_c_int_ptr(rect):
+#def cv_rect_to_c_int_ptr(rect):
     # 将 Python 元组 (x, y, width, height) 转换为 ctypes 指针
-    rect_array = (ctypes.c_int * 4)(*rect)
-    return ctypes.cast(rect_array, ctypes.POINTER(ctypes.c_int))
+#    rect_array = (ctypes.c_int * 4)(*rect)
+#    return ctypes.cast(rect_array, ctypes.POINTER(ctypes.c_int))
 
 
 @app.route('/')
@@ -76,11 +76,12 @@ def camera_calibration():
     ls_area_min = 1
     
     rect = (0, 0, 1080, 985)
+    rect_array = (ctypes.c_int * 4)(*rect)
     
     try:
         success = lib.camera_calibration(
             image_path.encode('utf-8'),
-            cv_rect_to_c_int_ptr(rect_instance),
+            ctypes.cast(rect_array, ctypes.POINTER(ctypes.c_int)),
             ctypes.c_bool(is_circle),
             ctypes.c_int(index),
             ctypes.c_double(area),
