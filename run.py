@@ -1,6 +1,6 @@
 import os
 import ctypes
-import numpy as np
+#import numpy as np
 
 from flask import Flask, request, jsonify, json
 from ctypes import *
