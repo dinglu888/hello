@@ -195,7 +195,7 @@ def galvanometer_correction():
     rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
 
     try:
-        result_ptr = lib.camera_calibration(
+        result_ptr = lib.galvanometer_correction(
             image_path.encode('utf-8'),
             cv_rect_to_c_int_ptr(rect_instance),
             ctypes.c_bool(is_circle),
