@@ -56,12 +56,14 @@ def camera_calibration():
     ls_kernel_cross = 7
     ls_area_max = 500000
     ls_area_min = 1
-    rect_instance = (0, 0, 1080, 985)
+    
+    rect = (0, 0, 1080, 985)
+    rect_array = (ctypes.c_int * 4)(*rect)
     
     try:
         success = lib.camera_calibration(
             image_path.encode('utf-8'),
-            cv_rect_to_c_int_ptr(rect_instance),
+            ctypes.cast(rect_array, ctypes.POINTER(ctypes.c_int),
             ctypes.c_bool(is_circle),
             ctypes.c_int(index),
             ctypes.c_double(area),
