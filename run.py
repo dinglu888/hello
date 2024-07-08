@@ -69,9 +69,11 @@ def camera_calibration():
     ls_area_max = int(data['ls_area_max'])
     ls_area_min = int(data['ls_area_min'])
     name = data['name']
+    width = int(data['width'])
+    height = int(data['height'])
 
-    str = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" %(is_circle, index, area, ls_circle, ls_convex, ls_ineria, ls_kernel, ls_kernel_cross, ls_area_max, ls_area_min, name)
-    return str
+    #str = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" %(is_circle, index, area, ls_circle, ls_convex, ls_ineria, ls_kernel, ls_kernel_cross, ls_area_max, ls_area_min, name)
+    #return str
 
     # 调用 camera_calibration 函数的示例参数
     #is_circle = True                             #检测十字架或圆   
@@ -87,7 +89,7 @@ def camera_calibration():
 
     # 图像路径
     image_path = './1.jpg'
-    rect_instance = (0, 0, 1080, 985)  # 你需要根据你的需求修改矩形区域
+    rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
 
     try:
         success = lib.camera_calibration(
