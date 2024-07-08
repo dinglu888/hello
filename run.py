@@ -94,7 +94,10 @@ def camera_calibration():
         ctypes.c_int(ls_area_min)
     )
 
-     
+    if success:
+        return 'Camera calibration successful'
+    else:
+        return 'Camera calibration failed'
     
 
 if __name__ == "__main__":
