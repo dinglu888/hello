@@ -140,43 +140,43 @@ def camera_calibration():
 def galvanometer_correction():
     try:
         lib = ctypes.CDLL('./libgalvanometer_correction.so')
-        #return 'Library loaded successfully'
+        return 'Library loaded successfully'
     except OSError as e:
         return f'Failed to load library:{e}'
         
         
-    lib.galvanometer_correction.argtypes = [
-        ctypes.c_char_p,  # const char* (as img_path)
-        ctypes.POINTER(ctypes.c_int),  # int* (as rect array)
-        ctypes.c_int,  # int (index)
-        ctypes.c_bool,  # bool (is_circle)
-        ctypes.c_double,  # double (ls_circle)
-        ctypes.c_double,  # double (ls_convex)
-        ctypes.c_double,  # double (ls_ineria)
-        ctypes.c_int,  # int (ls_kernel)
-        ctypes.c_int,  # int (ls_kernel_cross)
-        ctypes.c_int,  # int (ls_area_max)
-        ctypes.c_int   # int (ls_area_min)
-    ]
-    lib.galvanometer_correction.restype = ctypes.POINTER(ctypes.c_float)
+    # lib.galvanometer_correction.argtypes = [
+    #     ctypes.c_char_p,  # const char* (as img_path)
+    #     ctypes.POINTER(ctypes.c_int),  # int* (as rect array)
+    #     ctypes.c_int,  # int (index)
+    #     ctypes.c_bool,  # bool (is_circle)
+    #     ctypes.c_double,  # double (ls_circle)
+    #     ctypes.c_double,  # double (ls_convex)
+    #     ctypes.c_double,  # double (ls_ineria)
+    #     ctypes.c_int,  # int (ls_kernel)
+    #     ctypes.c_int,  # int (ls_kernel_cross)
+    #     ctypes.c_int,  # int (ls_area_max)
+    #     ctypes.c_int   # int (ls_area_min)
+    # ]
+    # lib.galvanometer_correction.restype = ctypes.POINTER(ctypes.c_float)
 
-    data = request.json
-    is_circle = bool(data['is_circle'])
-    index = int(data['index'])
-    area = float(data['area'])
-    ls_circle = float(data['ls_circle'])
-    ls_convex = float(data['ls_convex'])
-    ls_ineria = float(data['ls_ineria'])
-    ls_kernel = int(data['ls_kernel'])
-    ls_kernel_cross = int(data['ls_kernel_cross'])
-    ls_area_max = int(data['ls_area_max'])
-    ls_area_min = int(data['ls_area_min'])
-    name = data['name']
-    width = int(data['width'])
-    height = int(data['height'])
+    # data = request.json
+    # is_circle = bool(data['is_circle'])
+    # index = int(data['index'])
+    # area = float(data['area'])
+    # ls_circle = float(data['ls_circle'])
+    # ls_convex = float(data['ls_convex'])
+    # ls_ineria = float(data['ls_ineria'])
+    # ls_kernel = int(data['ls_kernel'])
+    # ls_kernel_cross = int(data['ls_kernel_cross'])
+    # ls_area_max = int(data['ls_area_max'])
+    # ls_area_min = int(data['ls_area_min'])
+    # name = data['name']
+    # width = int(data['width'])
+    # height = int(data['height'])
 
-    str = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" %(is_circle, index, area, ls_circle, ls_convex, ls_ineria, ls_kernel, ls_kernel_cross, ls_area_max, ls_area_min, name)
-    return str
+    #str = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" %(is_circle, index, area, ls_circle, ls_convex, ls_ineria, ls_kernel, ls_kernel_cross, ls_area_max, ls_area_min, name)
+    #return str
 
     # 调用 camera_calibration 函数的示例参数
     #is_circle = True                             #检测十字架或圆   
@@ -191,39 +191,39 @@ def galvanometer_correction():
     #ls_area_min = 1                              #最小面积
 
     # 图像路径
-    image_path = './1.jpg'
-    rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
+    # image_path = './1.jpg'
+    # rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
 
-    try:
-        result_ptr = lib.camera_calibration(
-            image_path.encode('utf-8'),
-            cv_rect_to_c_int_ptr(rect_instance),
-            ctypes.c_int(index),
-            ctypes.c_bool(is_circle),
-            ctypes.c_double(ls_circle),
-            ctypes.c_double(ls_convex),
-            ctypes.c_double(ls_ineria),
-            ctypes.c_int(ls_kernel),
-            ctypes.c_int(ls_kernel_cross),
-            ctypes.c_int(ls_area_max),
-            ctypes.c_int(ls_area_min)
-        )
+    # try:
+    #     result_ptr = lib.camera_calibration(
+    #         image_path.encode('utf-8'),
+    #         cv_rect_to_c_int_ptr(rect_instance),
+    #         ctypes.c_int(index),
+    #         ctypes.c_bool(is_circle),
+    #         ctypes.c_double(ls_circle),
+    #         ctypes.c_double(ls_convex),
+    #         ctypes.c_double(ls_ineria),
+    #         ctypes.c_int(ls_kernel),
+    #         ctypes.c_int(ls_kernel_cross),
+    #         ctypes.c_int(ls_area_max),
+    #         ctypes.c_int(ls_area_min)
+    #     )
 
-        if result_ptr:
-            # 将结果解析为 NumPy 数组
-            result_size = loc_get_size(index) * 2  # 根据你的需求设置数组大小
-            result_array = ctypes.cast(result_ptr, ctypes.POINTER(ctypes.c_float * result_size)).contents
-            m_result = np.ctypeslib.as_array(result_array)
-            m_result = m_result.astype(np.float32)
-            output_txt('output.txt', m_result)
-            return 'Galvanometer correction successful'
-        else:
-            return 'Galvanometer correction failed'
+    #     if result_ptr:
+    #         # 将结果解析为 NumPy 数组
+    #         result_size = loc_get_size(index) * 2  # 根据你的需求设置数组大小
+    #         result_array = ctypes.cast(result_ptr, ctypes.POINTER(ctypes.c_float * result_size)).contents
+    #         m_result = np.ctypeslib.as_array(result_array)
+    #         m_result = m_result.astype(np.float32)
+    #         output_txt('output.txt', m_result)
+    #         return 'Galvanometer correction successful'
+    #     else:
+    #         return 'Galvanometer correction failed'
             
-    except OSError as e:
-      return f'Failed to call galvanometer_correction: {e}'
-    except AttributeError as e:
-      return f'Failed to find galvanometer_correction function: {e}'
+    # except OSError as e:
+    #   return f'Failed to call galvanometer_correction: {e}'
+    # except AttributeError as e:
+    #   return f'Failed to find galvanometer_correction function: {e}'
     
 
 if __name__ == "__main__":
