@@ -190,7 +190,7 @@ def galvanometer_correction():
     #ls_area_max = 50000                         #最大面积
     #ls_area_min = 1                              #最小面积
 
-    图像路径
+    #图像路径
     image_path = './2.jpg'
     rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
 
