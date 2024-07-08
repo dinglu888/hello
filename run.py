@@ -70,7 +70,7 @@ def camera_calibration():
     ls_area_min = int(data['ls_area_min'])
     name = data['name']
 
-    str = "%s,%s,%s,%s,%s" %(is_circle, index, area, ls_circle, ls_convex, ls_ineria, ls_kernel, ls_kernel_cross, ls_area_max, ls_area_min, name)
+    str = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" %(is_circle, index, area, ls_circle, ls_convex, ls_ineria, ls_kernel, ls_kernel_cross, ls_area_max, ls_area_min, name)
     return str
 
     # 调用 camera_calibration 函数的示例参数
