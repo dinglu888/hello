@@ -219,7 +219,11 @@ def galvanometer_correction():
             m_result = m_result.astype(np.float32)
             output_txt('output.txt', m_result)
             #return 'Galvanometer correction successful'
-            return jsonify(m_result);
+
+            with open('output.txt', 'r') as file:
+                content = file.read()
+
+            return jsonify(content)
             
     except OSError as e:
       return f'Failed to call galvanometer_correction: {e}'
