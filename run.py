@@ -209,7 +209,9 @@ def galvanometer_correction():
             ctypes.c_int(ls_area_min)
         )
 
-        if result_ptr:
+        if result_ptr is None:
+            return 'Galvanometer correction failed'
+        else:      
             # 将结果解析为 NumPy 数组
             result_size = loc_get_size(index) * 2  # 根据你的需求设置数组大小
             result_array = ctypes.cast(result_ptr, ctypes.POINTER(ctypes.c_float * result_size)).contents
@@ -217,8 +219,6 @@ def galvanometer_correction():
             m_result = m_result.astype(np.float32)
             output_txt('output.txt', m_result)
             return 'Galvanometer correction successful'
-        else:
-            return 'Galvanometer correction failed'
             
     except OSError as e:
       return f'Failed to call galvanometer_correction: {e}'
