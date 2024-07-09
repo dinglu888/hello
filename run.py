@@ -218,7 +218,8 @@ def galvanometer_correction():
             m_result = np.ctypeslib.as_array(result_array)
             m_result = m_result.astype(np.float32)
             output_txt('output.txt', m_result)
-            return 'Galvanometer correction successful'
+            #return 'Galvanometer correction successful'
+            return jsonify(m_result);
             
     except OSError as e:
       return f'Failed to call galvanometer_correction: {e}'
