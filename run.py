@@ -95,9 +95,9 @@ def camera_calibration():
     ls_kernel_cross = int(data['ls_kernel_cross'])
     ls_area_max = int(data['ls_area_max'])
     ls_area_min = int(data['ls_area_min'])
-    name = str(data['name'])
-    width = int(data['width'])
-    height = int(data['height'])
+    name = str(data['img_name'])
+    width = int(data['img_width'])
+    height = int(data['img_height'])
 
     #str = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" %(is_circle, index, area, ls_circle, ls_convex, ls_ineria, ls_kernel, ls_kernel_cross, ls_area_max, ls_area_min, name,width,height)
     #return str
@@ -115,7 +115,7 @@ def camera_calibration():
     #ls_area_min = 1                              #最小面积
 
     url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/' + name + '.jpg'
-    image_path = './abc.jpg'
+    image_path = f'./1_{name}.jpg'
     response = requests.get(url)
     if response.status_code == 200:
         with open(image_path, 'wb') as f:
@@ -187,9 +187,9 @@ def galvanometer_correction():
     ls_kernel_cross = int(data['ls_kernel_cross'])
     ls_area_max = int(data['ls_area_max'])
     ls_area_min = int(data['ls_area_min'])
-    name = data['name']
-    width = int(data['width'])
-    height = int(data['height'])
+    name = str(data['img_name'])
+    width = int(data['img_width'])
+    height = int(data['img_height'])
 
     #str = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" %(is_circle, index, area, ls_circle, ls_convex, ls_ineria, ls_kernel, ls_kernel_cross, ls_area_max, ls_area_min, name,width,height)
     #return str
@@ -206,8 +206,15 @@ def galvanometer_correction():
     #ls_area_max = 50000                         #最大面积
     #ls_area_min = 1                              #最小面积
 
-    #图像路径
-    image_path = './2.jpg'
+    url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/' + name + '.jpg'
+    image_path = f'./2_{name}.jpg'
+    response = requests.get(url)
+    if response.status_code == 200:
+        with open(image_path, 'wb') as f:
+            f.write(response.content)
+    else:
+        return 'download fail'
+
     rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
 
     try:
