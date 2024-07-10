@@ -124,11 +124,10 @@ def camera_calibration():
     else:
         return 'download fail'
     
-    #img = Image.open(image_path)
-    #width1, height1 = img.size
-    rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
-    #str = "%s,%s" %(width1, height1)
-    #return str
+    image = Image.open(image_path)
+    width1, height1 = image.size
+    rect_instance = (0, 0, width1, height1)  # 你需要根据你的需求修改矩形区域
+    return f'image size is {width1},{height1}'
 
     try:
         success = lib.camera_calibration(
