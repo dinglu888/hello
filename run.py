@@ -126,7 +126,7 @@ def camera_calibration():
     
     image = Image.open(image_path)
     width, height = image.size
-    rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
+    rect_instance = (0, 0, 1080, 985)  # 你需要根据你的需求修改矩形区域
     #return f'image size is {width1},{height1}'
 
     try:
@@ -219,7 +219,7 @@ def galvanometer_correction():
 
     image = Image.open(image_path)
     width, height = image.size
-    rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
+    rect_instance = (0, 0, 1080, 985)  # 你需要根据你的需求修改矩形区域
     #return f'image size is {width1},{height1}'
 
     try:
