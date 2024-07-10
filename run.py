@@ -97,8 +97,6 @@ def camera_calibration():
     ls_area_max = int(data['ls_area_max'])
     ls_area_min = int(data['ls_area_min'])
     name = str(data['img_name'])
-    width = int(data['img_width'])
-    height = int(data['img_height'])
 
     #str = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" %(is_circle, index, area, ls_circle, ls_convex, ls_ineria, ls_kernel, ls_kernel_cross, ls_area_max, ls_area_min, name,width,height)
     #return str
@@ -125,9 +123,9 @@ def camera_calibration():
         return 'download fail'
     
     image = Image.open(image_path)
-    width1, height1 = image.size
-    rect_instance = (0, 0, width1, height1)  # 你需要根据你的需求修改矩形区域
-    return f'image size is {width1},{height1}'
+    width, height = image.size
+    rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
+    #return f'image size is {width1},{height1}'
 
     try:
         success = lib.camera_calibration(
@@ -192,8 +190,6 @@ def galvanometer_correction():
     ls_area_max = int(data['ls_area_max'])
     ls_area_min = int(data['ls_area_min'])
     name = str(data['img_name'])
-    width = int(data['img_width'])
-    height = int(data['img_height'])
 
     #str = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" %(is_circle, index, area, ls_circle, ls_convex, ls_ineria, ls_kernel, ls_kernel_cross, ls_area_max, ls_area_min, name,width,height)
     #return str
@@ -219,7 +215,10 @@ def galvanometer_correction():
     else:
         return 'download fail'
 
+    image = Image.open(image_path)
+    width, height = image.size
     rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
+    #return f'image size is {width1},{height1}'
 
     try:
         result_ptr = lib.galvanometer_correction(
