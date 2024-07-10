@@ -1,9 +1,8 @@
 import os
 import ctypes
 import numpy as np
-import wget
 
-from flask import Flask, request, jsonify, json
+from flask import Flask, request, requests, jsonify, json
 from ctypes import *
 
 app = Flask(__name__)
@@ -40,8 +39,8 @@ def getData():
     #data = {"name":"xiaoming", "age":"18"}
     #return data;
     url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/1720487782502.jpg?sign=68e65a2d83a3167b8637c0833474f017&t=1720527101'
-    path = './111.jpg' 
-    wget.download(url, path)
+    r = requests.get(url)
+    
     return 'hello';
 
 @app.route('/cb_sayhello')
