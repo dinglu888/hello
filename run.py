@@ -124,8 +124,8 @@ def camera_calibration():
     else:
         return 'download fail'
     
-    #image = Image.open(image_path)
-    image = Image.open('./1.jpg')
+    image = Image.open(image_path)
+    #image = Image.open('./1.jpg')
     width, height = image.size
     rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
     #return f'image size is {width},{height}'
@@ -218,8 +218,8 @@ def galvanometer_correction():
     else:
         return 'download fail'
 
-    #image = Image.open(image_path)
-    image = Image.open('./2.jpg')
+    image = Image.open(image_path)
+    #image = Image.open('./2.jpg')
     width, height = image.size
     rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
     #return f'image size is {width},{height}'
