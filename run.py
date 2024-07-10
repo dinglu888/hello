@@ -27,8 +27,8 @@ def output_txt(file, data):
             for k in range(0, len(data), 2):
                 x = data[k] if k < len(data) else 0
                 y = data[k+1] if (k+1) < len(data) else 0
-                round_x = np.round(x, 3)
-                round_y = np.round(y, 3)
+                round_x = np.round(1, 3)
+                round_y = np.round(2, 3)
                 f.write("{:<10} {:<15} {:<15}\n".format((k//2)+1, round_x, round_y))
         return True
     except IOError:
@@ -124,9 +124,10 @@ def camera_calibration():
     else:
         return 'download fail'
     
-    image = Image.open(image_path)
+    #image = Image.open(image_path)
+    image = Image.open('./1.jpg')
     width, height = image.size
-    rect_instance = (0, 0, 1080, 985)  # 你需要根据你的需求修改矩形区域
+    rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
     #return f'image size is {width1},{height1}'
 
     try:
@@ -217,9 +218,10 @@ def galvanometer_correction():
     else:
         return 'download fail'
 
-    image = Image.open(image_path)
+    #image = Image.open(image_path)
+    image = Image.open('./2.jpg')
     width, height = image.size
-    rect_instance = (0, 0, 1080, 985)  # 你需要根据你的需求修改矩形区域
+    rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
     #return f'image size is {width1},{height1}'
 
     try:
