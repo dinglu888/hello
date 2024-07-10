@@ -95,7 +95,7 @@ def camera_calibration():
     ls_kernel_cross = int(data['ls_kernel_cross'])
     ls_area_max = int(data['ls_area_max'])
     ls_area_min = int(data['ls_area_min'])
-    name = data['name']
+    name = str(data['name'])
     width = int(data['width'])
     height = int(data['height'])
 
@@ -114,7 +114,7 @@ def camera_calibration():
     #ls_area_max = 500000                         #最大面积
     #ls_area_min = 1                              #最小面积
 
-    url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/' + '1720579887141' + '.jpg'
+    url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/' + name + '.jpg'
     image_path = './abc.jpg'
     response = requests.get(url)
     if response.status_code == 200:
