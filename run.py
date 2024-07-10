@@ -27,7 +27,7 @@ def output_txt(file, data):
             for k in range(0, len(data), 2):
                 x = data[k] if k < len(data) else 0
                 y = data[k+1] if (k+1) < len(data) else 0
-                f.write("{:<10} {:<15} {:<15}\n".format((k//2)+1, x, y))
+                f.write("{:<10} {:<15} {:<15}\n".format((k//2)+1, round(x, 3), round(y, 3)))
         return True
     except IOError:
         return False
