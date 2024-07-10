@@ -39,12 +39,12 @@ def hello():
 def getData():
     #data = {"name":"xiaoming", "age":"18"}
     #return data;
-    url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/1720487782502.jpg?sign=68e65a2d83a3167b8637c0833474f017&t=1720527101'
+    url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/1720487782502.jpg'
     response = requests.get(url)
     if response.status_code == 200:
         with open('./abc.jpg', 'wb') as f:
             f.write(response.content)
-        return jsonify(response)
+        return 'download success'
     else:
         return 'request fail'
 
@@ -114,8 +114,15 @@ def camera_calibration():
     #ls_area_max = 500000                         #最大面积
     #ls_area_min = 1                              #最小面积
 
-    # 图像路径
-    image_path = './1.jpg'
+    url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/' + name + '.jpg'
+    image_path = './abc.jpg'
+    response = requests.get(url)
+    if response.status_code == 200:
+        with open(image_path, 'wb') as f:
+            f.write(response.content)
+    else:
+        return 'download fail'
+    
     rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
 
     try:
