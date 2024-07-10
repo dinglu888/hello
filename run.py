@@ -5,7 +5,7 @@ import requests
 
 from flask import Flask, request, jsonify, json
 from ctypes import *
-from PIL import Image
+#from PIL import Image
 
 app = Flask(__name__)
 
@@ -124,10 +124,10 @@ def camera_calibration():
     else:
         return 'download fail'
     
-    img = Image.open(image_path)
-    width1, height1 = img.size
-    rect_instance = (0, 0, width1, height1)  # 你需要根据你的需求修改矩形区域
-    str = "%s,%s" %(width1, height1)
+    #img = Image.open(image_path)
+    #width1, height1 = img.size
+    rect_instance = (0, 0, width, height)  # 你需要根据你的需求修改矩形区域
+    str = "%s,%s" %(width, height)
     return str
 
     try:
