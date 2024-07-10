@@ -27,8 +27,8 @@ def output_txt(file, data):
             for k in range(0, len(data), 2):
                 x = data[k] if k < len(data) else 0
                 y = data[k+1] if (k+1) < len(data) else 0
-                round_x = np.round(1, 3)
-                round_y = np.round(2, 3)
+                round_x = np.round(float(x), 3)
+                round_y = np.round(float(y), 3)
                 f.write("{:<10} {:<15} {:<15}\n".format((k//2)+1, round_x, round_y))
         return True
     except IOError:
