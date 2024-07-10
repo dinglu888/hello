@@ -42,7 +42,7 @@ def getData():
     url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/1720487782502.jpg?sign=68e65a2d83a3167b8637c0833474f017&t=1720527101'
     response = requests.get(url)
     if response.status_code == 200:
-        with open('abc.jpg','wb') as f:
+        with open('./abc.jpg', 'wb') as f:
             f.write(response.content)
         return jsonify(response)
     else:
