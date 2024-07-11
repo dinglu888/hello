@@ -161,7 +161,7 @@ def camera_calibration():
 def galvanometer_correction():
     try:
         lib = ctypes.CDLL('./libgalvanometer_correction.so')
-        return 'Library loaded successfully'
+        #return 'Library loaded successfully'
     except OSError as e:
         return f'Failed to load library:{e}'
         
@@ -194,8 +194,8 @@ def galvanometer_correction():
     ls_area_min = int(data['ls_area_min'])
     name = str(data['img_name'])
 
-    str = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" %(is_circle, index, area, ls_circle, ls_convex, ls_ineria, ls_kernel, ls_kernel_cross, ls_area_max, ls_area_min, name)
-    return str
+    #str = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" %(is_circle, index, area, ls_circle, ls_convex, ls_ineria, ls_kernel, ls_kernel_cross, ls_area_max, ls_area_min, name)
+    #return str
 
     #调用 camera_calibration 函数的示例参数
     #is_circle = True                             #检测十字架或圆   
