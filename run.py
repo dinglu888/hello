@@ -247,10 +247,12 @@ def galvanometer_correction():
             result_array = ctypes.cast(result_ptr, ctypes.POINTER(ctypes.c_float * result_size)).contents
             m_result = np.ctypeslib.as_array(result_array)
             m_result = m_result.astype(np.float32)
-            output_txt('output.txt', m_result)
+
+            file_path = f'output_{name}.txt'
+            output_txt(file_path, m_result)
             #return 'Galvanometer correction successful'
 
-            with open('output.txt', 'r') as file:
+            with open(file_path, 'r') as file:
                 content = file.read()
 
             return jsonify(content)
