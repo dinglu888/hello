@@ -115,7 +115,8 @@ def camera_calibration():
     #ls_area_max = 500000                         #最大面积
     #ls_area_min = 1                              #最小面积
 
-    url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/' + name + '.jpg'
+    #url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/' + name + '.jpg'
+    url = 'https://7072-prod-1gc241ptb29dfd15-1327920907.tcb.qcloud.la/img/' + name + '.jpg'
     image_path = f'./1_{name}.jpg'
     response = requests.get(url)
     if response.status_code == 200:
@@ -209,7 +210,8 @@ def galvanometer_correction():
     #ls_area_max = 50000                         #最大面积
     #ls_area_min = 1                              #最小面积
 
-    url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/' + name + '.jpg'
+    #url = 'https://7072-prod-0gwkiow3d05ece9c-1327429310.tcb.qcloud.la/img/' + name + '.jpg'
+    url = 'https://7072-prod-1gc241ptb29dfd15-1327920907.tcb.qcloud.la/img/' + name + '.jpg'
     image_path = f'./2_{name}.jpg'
     response = requests.get(url)
     if response.status_code == 200:
